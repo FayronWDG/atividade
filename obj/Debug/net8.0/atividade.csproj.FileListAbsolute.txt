@@ -1,0 +1,15 @@
+/workspaces/atividade/obj/Debug/net8.0/atividade.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/atividade/obj/Debug/net8.0/atividade.AssemblyInfoInputs.cache
+/workspaces/atividade/obj/Debug/net8.0/atividade.AssemblyInfo.cs
+/workspaces/atividade/obj/Debug/net8.0/atividade.csproj.CoreCompileInputs.cache
+/workspaces/atividade/obj/Debug/net8.0/atividade.sourcelink.json
+/workspaces/atividade/bin/Debug/net8.0/atividade
+/workspaces/atividade/bin/Debug/net8.0/atividade.deps.json
+/workspaces/atividade/bin/Debug/net8.0/atividade.runtimeconfig.json
+/workspaces/atividade/bin/Debug/net8.0/atividade.dll
+/workspaces/atividade/bin/Debug/net8.0/atividade.pdb
+/workspaces/atividade/obj/Debug/net8.0/atividade.dll
+/workspaces/atividade/obj/Debug/net8.0/refint/atividade.dll
+/workspaces/atividade/obj/Debug/net8.0/atividade.pdb
+/workspaces/atividade/obj/Debug/net8.0/atividade.genruntimeconfig.cache
+/workspaces/atividade/obj/Debug/net8.0/ref/atividade.dll
