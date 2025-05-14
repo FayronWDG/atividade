@@ -2,6 +2,7 @@
     Console.WriteLine("Escreva de 1 a 10, cada um vai abrir um programa diferente,para finalizar o programa digite 0.");
     i=int.Parse(Console.ReadLine());
         switch(i){ 
+
         case 1 :
             Ex1.Rodar();
         break;
