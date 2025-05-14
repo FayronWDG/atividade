@@ -15,9 +15,10 @@ public class Ex1{
         Console.Write("Escreva o número do expoente(apenas inteiros): ");
         num2=int.Parse(Console.ReadLine());
         
-        for( int i=0; i<num2 ; i++ ){
+      
+        for( int i=1; i<num2 ; i++ ){
             resultado=resultado*num1;
-        }
-        Console.WriteLine($"\n\nResultado: {resultado}");
-    }
+            }
+    Console.WriteLine($"\n\nResultado: {resultado}");
+}
 }

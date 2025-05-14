@@ -28,7 +28,7 @@
         break;
         
         case 7 :
-            Ex7.Rodar();
+            //Ex7.Rodar();
         break;
         
         case 8 :

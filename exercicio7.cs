@@ -1,6 +1,6 @@
 using System;
 
-public class Ex7{
+/*public class Ex7{
 
     public static void Rodar(){
     
@@ -8,4 +8,4 @@ public class Ex7{
     public static double (){
 
     }
-}
+}*/
