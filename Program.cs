@@ -6,7 +6,7 @@
             Ex1.Rodar();
         break;
         case 2 :
-            //Ex2.Rodar();
+            Ex2.Rodar();
         break;
         case 3 :
             //Ex3.Rodar();
