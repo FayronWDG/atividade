@@ -9,7 +9,7 @@
             Ex2.Rodar();
         break;
         case 3 :
-            //Ex3.Rodar();
+            Ex3.Rodar();
         break;
         }
     }
