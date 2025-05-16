@@ -7,30 +7,31 @@ public class Ex3{
     }  
     public static void triangulo(){
         double x=0,y=0,z=0;
-        for(int i=0;x>=i ;){
-            Console.WriteLine($"Escreva um valor menor ou igual a 0 para encerrar o programa\nTriangulo {i+1}\n");
-            
+        int contadorInf=int.MaxValue;
+        for (int i = 0;contadorInf>= i;) {
+            Console.WriteLine($"Escreva um valor menor ou igual a 0 para encerrar o programa\nTriangulo {i + 1}\n");
+
             Console.Write("Escreva o primeiro lado de um triangulo: ");
-            x=double.Parse(Console.ReadLine());
-            if(x <= 0){
+            x = double.Parse(Console.ReadLine());
+            if (x <= 0) {
                 break;
             }
             Console.Write("Escreva o segundo lado de um triangulo: ");
-            y=double.Parse(Console.ReadLine());
-            if(y <= 0){
+            y = double.Parse(Console.ReadLine());
+            if (y <= 0) {
                 break;
             }
             Console.Write("Escreva o terceiro lado de um triangulo: ");
-            z=double.Parse(Console.ReadLine());
-            if(z <= 0){
+            z = double.Parse(Console.ReadLine());
+            if (z <= 0) {
                 break;
             }
 
-            if((x+y)>z && (x+z)>y && (z+y)>x){
-                tipoTri(x,y,z);
+            if ((x + y) > z && (x + z) > y && (z + y) > x) {
+                tipoTri(x, y, z);
                 i++;
             }
-            else{
+            else {
                 Console.WriteLine("\nCom esses valores não se forma um triângulo.");
             }
         }
