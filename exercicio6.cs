@@ -2,7 +2,7 @@ using System;
 
 public class Ex6{
 
-    public static void Rodar(){
+    public static void rodar(){
        
         
     }        

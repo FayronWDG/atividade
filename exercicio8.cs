@@ -2,7 +2,7 @@ using System;
 
 public class Ex8{
 
-    public static void Rodar(){
+    public static void rodar(){
        
         
     }        
