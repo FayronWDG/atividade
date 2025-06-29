@@ -47,4 +47,5 @@
         break;
     }
 }
-
+Console.WriteLine("FIM DO PROGRAMA.\nPressione qualquer tecla para fechar o programa....");
+Console.ReadKey();

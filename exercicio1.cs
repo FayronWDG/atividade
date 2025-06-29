@@ -1,52 +1,56 @@
 using System;
 
+//nome:Wallyson Soares Vieira
+//vou fazer 2 tipos: um que pega a primeira letra do meu nome(W) e outro que considera a primeira letra da frase, em ambos vou considerar tanto maiuscula quanto minuscula(vou dar um ToLowerCase)
+//foi mal se isso não ser o que você quer, mas além do enunciado ter me deixado com duvida eu gostei da ideia de fazer assim.
+
 public class Ex1{
 
-    public static void rodar(){
-    //declarando vetor inteiro
-    int[] vetor15=new int[15];
 
-    novoVetor(vetor15);
-    imprimirVetor(vetorPares(vetor15));
+
+    public static void rodar(){
+        //variaveis sendo declaradas
+        string frase = "" ;
+        char letra = ' ' ;
+        int contador = 0;
+
+        //titulo('-' sim eu fiz fora de ordem)
+        Console.WriteLine("\nContador de letras iguais a inicial.\n");
+
+        //pede e guarda a frase
+        Console.WriteLine("Escreva uma frase abaixo.");
+        frase = Console.ReadLine();
+        
+        //escolhe o tipo de letraa ser guardado no contador.
+        Console.WriteLine("Escreva 1 para usar a primeira letra da frase que você escreveu\nEscreva 2 para usar a primeira letra do meu nome(W).");
+        switch(int.Parse(Console.ReadLine())){
+            
+            case 1:
+            letra = frase[0];
+            contador = quantidadeDeLetras(frase,letra);
+            break;
+            
+            case 2:
+            letra = 'W';
+            contador = quantidadeDeLetras(frase,letra);
+            break;   
+        }
+
+        //mostra o resultado na tela do usuario.
+        Console.WriteLine($"A quantidade de {letra} é: {contador}");
+
     }
     
-    //procedimento que preenche um vetor de 15 indices
-    public static void novoVetor(int[] vetor){
-        //criando objeto para Random(para pegar números aleatorios)
-        Random r= new Random();
-        for(int i=0;i<vetor.Length;i++){
-            //usando valores aleatorios para preencher o vetor de 15 indices e mostrando os valores do vetor no terminal
-            vetor[i]=r.Next(60);
-            Console.Write($"{vetor[i]} ");
-        }
-    }
-    //função que retorna um vetor só com os números pares do vetor de parametro
-    public static int[] vetorPares(int[] vetor){
-        //declarando variaveis
-        int[] vetorPar;
-        int contador=0;    
-        
-        //teste para saber se é impar e se for tem que fazer um aumento no tamanho do vetorPar para funcionar
-        if(vetor.Length%2!=0){
-            vetorPar=new int[(vetor.Length+1)/2];
-        }else{
-            vetorPar=new int[vetor.Length/2];
-        } 
-        
-            for(int i=0 ; i < vetor.Length ; i=i+2){
-                vetorPar[contador]=vetor[i];
-                contador++;
+    //função que recebe a frase e a letra e retorna a quantidade de vezes que essa letra se repete na frase.
+    public static int quantidadeDeLetras(string frase, char letra){
+        int contador=0;
+        letra= char.ToUpper(letra);
+        for (int i = 0; i < frase.Length; i++)
+        {
+            if (char.ToUpper(frase[i]) == letra) {
+               contador++;
             }
-            
-        return vetorPar;
-    }
-    //procedimento que imprime o vetor passado por parametro no terminal
-    public static void imprimirVetor(int[] imprimir){
-        for(int i=0 ; i < imprimir.Length ; i++){
-        if(i==0){
-            Console.WriteLine("\n");    
         }
-        Console.Write($"{imprimir[i]} ");
-        }
+        return contador;
     }
 }

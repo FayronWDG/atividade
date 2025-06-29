@@ -3,47 +3,34 @@ using System;
 public class Ex2{
 
     public static void rodar(){
-        //declarando variavel vetor
-        double[] turmaNotas=new double[10];
-
-        //chamando metodos para colocar números no vetor e calcular a média e a quantidade de alunos acima da média e mostra para o usuario
-        vetorTurma(turmaNotas);
-        mediaContador(turmaNotas);
-
-    }      
-
-
-    public static void vetorTurma(double[] turma){
+        string frase = "";
         
-        //criando objeto para Random(para pegar números aleatorios)
-        Random r= new Random();
+        //titulo
+        Console.WriteLine("\nContador de letras iguais a inicial.\n");
 
-        Console.Write("Notas da turma: ");
-        for(int i=0;i<turma.Length;i++){
-            //usando valores aleatorios para preenchero vetor de 15 indices e mostrando os valores do vetor no terminal
-            turma[i]=r.Next(100)/10.0;
-            Console.Write($"{turma[i]} ");
-        }
+        //pede e guarda a frase
+        Console.WriteLine("Escreva uma frase abaixo.");
+        frase = Console.ReadLine();
+
+        //mostra a frase sem os espaços
+        Console.WriteLine("Frase sem espaço abaixo.\n"+conversorFraseSemEspaço(frase));
+    
     }
 
+    //conversor de frase para tirar os espaços.
+    public static string conversorFraseSemEspaço(string frase){
+        string resultado= "";
+        string[] palavras = frase.Split(' ');
 
-    //procedimento que calcula a media e a quantidade de alunos acima da média e mostra no terminal.
-    public static void mediaContador(double[] turma){
-        double somaNotas=0,mediaNotas=0;
-        int acimaMedia=0;
-
-        for(int i=0;i<turma.Length;i++){
-            somaNotas+=turma[i];
-        }
-        mediaNotas=somaNotas/turma.Length;
-
-        for(int i=0;i<turma.Length;i++){
-            if(turma[i]>mediaNotas){
-                acimaMedia++;
+       
+        
+        for (int i = 0; i < palavras.Length; i++)
+        {
+            if (palavras[i]!="") {
+                resultado += palavras[i];
             }
         }
-        Console.WriteLine($"\nA media da turma foi: {mediaNotas:F2}\nE os alunos acima da media somaram: {acimaMedia} alunos.");
-
+        return resultado;
     }
 }
 
