@@ -1,56 +1,50 @@
 using System;
+using System.IO;
+using System.Text;
 
 public class Ex6{
 
     public static void rodar(){
-        double[] temp=new double[31];
+        //declarando variavel
+        int numero = 0, soma = 0;
         
-        
-        vetorTemp(temp);
-        mediaContador(temp);
-
-
-    }        
-
+        //titulo
+        Console.WriteLine("Soma de divisores de um número inteiro");
+        //pede um numero para o usuario, calcula os divisores exatos e mostra na tela do usuario todos os divisores, e depois guarda a soma desses divisores no registro.txt que está dentro da pasta
+        Console.Write("Escreva um número inteiro: ");
+        numero =int.Parse(Console.ReadLine());
+        soma = somaDivisores(numero);
+        gravarTxt(numero,soma);
+        //mensagem para a pessoa saber que foi guardado no arquivo.
+        Console.WriteLine("\nA soma dos divisores foi guardada no registro.txt");
     
-    public static void vetorTemp(double[] temp){
+    
+    }   
+    //função para somar e mostrar na tela do usuario os divisores de um número
+    public static int somaDivisores(int numero){
+        int soma=0;
+        Console.WriteLine("Divisores: ");
+        for (int i = 1; i <= numero; i++)
+        {
+            if (numero % i == 0)
+            {
+                Console.Write(i+" ");
+                soma+=i;
+            }
+        }
+
+    return soma;
+    }    
+   
+    //função para gravar no arquivo txt a soma do número
+    public static void gravarTxt(int numero,int soma){
+
+        StreamWriter sw = new StreamWriter("registro.txt", true, Encoding.ASCII);
+
+        sw.Write($"\nsoma dos divisores de {numero}: {soma}.");
         
-        //criando objeto para Random(para pegar números aleatorios)
-        Random r= new Random();
-
-        Console.Write("Temperaturas Outubro: ");
-        for(int i=0;i<temp.Length;i++){
-            //usando valores aleatorios para preenchero vetor de 15 indices e mostrando os valores do vetor no terminal
-            temp[i]=r.Next(150,400)/10.0;
-            Console.Write($"{temp[i]}°C ");
-        }
-    }
-
-
-    //procedimento que calcula a media e a quantidade de temperatura abaixo da média e a maior e a menor temperatura e mostra no terminal.
-    public static void mediaContador(double[] temp){
-        double somaTemp=0, mediaTemp=0, maior=double.MinValue , menor=double.MaxValue;
-        int abaixoMedia=0;
-
-        Console.Write("\n");
-        for(int i=0;i<temp.Length;i++){
-            somaTemp+=temp[i];
-        }
-        mediaTemp=somaTemp/temp.Length;
-
-        for(int i=0;i<temp.Length;i++){
-            if(temp[i]<mediaTemp){
-                abaixoMedia++;
-            }
-            if(menor>temp[i]){
-                menor=temp[i];
-            }
-            if(maior<temp[i]){
-                maior=temp[i];
-            }
-        }
-        //mostrando tudo no terminal
-        Console.WriteLine($"\nA media da temperatura de outubro foi: {mediaTemp:F2}\nE os dias que tiveram temperatura abaixo da media somaram: {abaixoMedia} dias.\nA menor temperatura foi: {menor}\nA maior temperatura foi: {maior}.\n");
+        sw.Close();
 
     }
+   
 }

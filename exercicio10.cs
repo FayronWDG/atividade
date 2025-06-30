@@ -1,87 +1,90 @@
 using System;
+using System.IO;
 
-public class Ex10{
+public class Ex10
+{
+    public static void rodar()
+    {
+        //declara as variáveis que vão receber os resultados
+        double maior = 0, menor = 0, media = 0;
 
-    public static void rodar(){
-        //cria e preenche matriz 10x10 com valores aleatórios
-        int[,] matriz = new int[10,10];
-        matrizAleatoria(matriz);
-
-        //troca linha 2 com linha 8 e mostra resultado
-        trocaLinha(matriz, 2, 8);
-
-        //troca coluna 4 com coluna 10 e mostra resultado
-        trocaColuna(matriz, 4, 10);
-
-        //troca diagonal principal com diagonal secundária e mostra resultado
-        trocaDiagonal(matriz);
+        //título
+        Console.WriteLine("Cálculo do maior, menor e média de valores do arquivo");        
+        
+        //chama a função que calcula tudo de uma vez e mostra os resultados na tela
+        calcularTudo(ref maior, ref menor, ref media);
+        exibir(maior, menor, media);
     }
 
-    //preenche matriz com números aleatórios e imprime
-    public static void matrizAleatoria(int[,] matriz){
-        Random r = new Random();
 
-        Console.WriteLine("Matriz original:");
-        for(int i=0; i<matriz.GetLength(0); i++){
-            for(int j=0; j<matriz.GetLength(1); j++){
-                matriz[i,j] = r.Next(1,31);
-                Console.Write($"{matriz[i,j],3} ");
+
+    //função que calcula o maior, menor e a média dos números do arquivo valores.txt
+    public static void calcularTudo(ref double maior, ref double menor, ref double media)
+    {
+        //abre o arquivo para leitura
+        StreamReader sr = new StreamReader("valores.txt");
+
+        //declarando variaveis
+        string linha = sr.ReadLine();
+        double soma = 0;
+        int cont = 0;
+
+        //enquanto houver linhas no arquivo
+        while (linha != null)
+        {
+            if (linha != "")
+            {
+            
+            double num = double.Parse(linha);
+
             }
-            Console.WriteLine();
-        }
-    }
-
-    //troca duas linhas da matriz e imprime o resultado
-    public static void trocaLinha(int[,] matriz, int linha1, int linha2){
-        linha1 -= 1;
-        linha2 -= 1;
-
-        for(int j=0; j<matriz.GetLength(1); j++){
-            int aux = matriz[linha1, j];
-            matriz[linha1, j] = matriz[linha2, j];
-            matriz[linha2, j] = aux;
-        }
-
-        Console.WriteLine($"\nMatriz após troca da linha {linha1+1} com linha {linha2+1}:");
-        imprimirMatriz(matriz);
-    }
-
-    //troca duas colunas da matriz e imprime o resultado
-    public static void trocaColuna(int[,] matriz, int coluna1, int coluna2){
-        coluna1 -= 1;
-        coluna2 -= 1;
-
-        for(int i=0; i<matriz.GetLength(0); i++){
-            int aux = matriz[i, coluna1];
-            matriz[i, coluna1] = matriz[i, coluna2];
-            matriz[i, coluna2] = aux;
-        }
-
-        Console.WriteLine($"\nMatriz após troca da coluna {coluna1+1} com coluna {coluna2+1}:");
-        imprimirMatriz(matriz);
-    }
-
-    //troca diagonal principal com diagonal secundária e imprime o resultado
-    public static void trocaDiagonal(int[,] matriz){
-        int n = matriz.GetLength(0);
-
-        for(int i=0; i<n; i++){
-            int aux = matriz[i, i];
-            matriz[i, i] = matriz[i, n - 1 - i];
-            matriz[i, n - 1 - i] = aux;
-        }
-
-        Console.WriteLine("\nMatriz após troca da diagonal principal com a diagonal secundária:");
-        imprimirMatriz(matriz);
-    }
-
-    //imprime matriz formatada no console
-    public static void imprimirMatriz(int[,] matriz){
-        for(int i=0; i<matriz.GetLength(0); i++){
-            for(int j=0; j<matriz.GetLength(1); j++){
-                Console.Write($"{matriz[i,j],3} ");
+            //se for o primeiro número, define como maior e menor
+            if (cont == 0)
+            {
+                maior = num;
+                menor = num;
             }
-            Console.WriteLine();
+            else
+            {
+                
+                if (num > maior)
+                {
+                    maior = num;
+                }
+
+              
+                if (num < menor)
+                {
+                    menor = num;
+                }
+            }
+
+        
+            soma += num;
+
+            
+            cont++;
+
+            
+            linha = sr.ReadLine();
         }
+
+        //fecha o arquivo após leitura
+        sr.Close();
+
+        
+        
+        
+        media = soma / cont;
+    }
+
+
+
+    //função que mostra os resultados na tela
+    public static void exibir(double max, double min, double media)
+    {
+        Console.WriteLine("Maior: " + max);
+        Console.WriteLine("Menor: " + min);
+        Console.WriteLine("Média: " + media);
     }
 }

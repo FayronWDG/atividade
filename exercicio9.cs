@@ -3,49 +3,52 @@ using System;
 public class Ex9
 {
 
-    public static void rodar(){
-    int[,] matriz=new int[10,10];
-        matrizAleatoria(matriz);
-        matrizTransposta(matriz);
+    public static void rodar()
+    {   
+        //declarando variaveis.
+        int i = 0;
+        //while que vai repetino até a pessoa digitar um número menor que 0
+        while(i >= 0)
+        {   
+            //chama o procedimetno que faz o sorteio da frase e pergunta se a pessoa quer sair do programa.
+            lerFraseMotivacional();
+            Console.WriteLine("Se quiser sair digite qualquer número menor que 0.");
+            i = int.Parse(Console.ReadLine());
+
+        }
 
     }
-    public static void matrizAleatoria(int[,] matriz){
-        Random r= new Random();
-        // Preencher matriz
-        for (int i = 0; i < matriz.GetLength(0); i++) {
-            for (int j = 0; j < matriz.GetLength(1); j++) {
-                matriz[i,j] = r.Next(1,31);  
-            }
-        }
-        // Imprimir matriz
-        Console.WriteLine("Matriz:");
-        for (int i = 0; i < matriz.GetLength(0); i++) {
-            for (int j = 0; j < matriz.GetLength(1); j++) {
-                Console.Write($"{matriz[i,j],3} ");
-            }
-            Console.WriteLine();
-        }
-    }
+    
+    //função que lê uma frase aleatoria.
+    public static void lerFraseMotivacional()
+    {
+        //declarando variaveis
+        string[] frases = new string[10]; 
+        int total = 0,sorteado=0;
+        string[] partes;
 
+        //abre o arquivo para leitura
+        StreamReader sr = new StreamReader("frasesM.txt");
 
-    public static void matrizTransposta(int[,] matriz){
-    // Cria nova matriz com dimensões invertidas
-    int[,] matrizTransposta = new int[matriz.GetLength(1), matriz.GetLength(0)];
+        //pega as frases dentro do arquivo
+        string linha = sr.ReadLine();
+        while (linha != null)
+        {
+            frases[total] = linha;
+            total++;
+            linha = sr.ReadLine();
+        }
 
-    // Preencher matriz transposta
-    for (int i = 0; i < matriz.GetLength(0); i++) {
-        for (int j = 0; j < matriz.GetLength(1); j++) {
-            matrizTransposta[j,i] = matriz[i,j];  
-        }
-    }
+        //fecha o arquivo
+        sr.Close();
 
-    // Imprimir matriz transposta
-    Console.WriteLine("\n\nMatriz transposta:");
-    for (int i = 0; i < matrizTransposta.GetLength(0); i++) {
-        for (int j = 0; j < matrizTransposta.GetLength(1); j++) {
-            Console.Write($"{matrizTransposta[i,j],3} ");
-        }
-        Console.Write("\n");
-        }
+        //cria objeto para sortear um número aleatorio e sorteia um número que vai ir e pegar lá nas frases separadas anteriormente.
+        //e assim mostra na tela do usuario a frase que veio.
+        Random r = new Random();
+        sorteado = r.Next(total); 
+        partes = frases[sorteado].Split(':');
+        Console.WriteLine($"\nFrase sorteada: {partes[1]}\n");
+        
+
     }
 }

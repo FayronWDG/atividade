@@ -1,90 +1,101 @@
 using System;
+using System.IO;
+using System.Text;
 
 public class Ex8{
 
-    public static void rodar(){
-        int[,] matriz= new int[5,5];
+     public static void rodar()
+    {
+
+        Console.WriteLine();
+
+        //chama a função para guardar um aluno e sua matricula e a função para procurar um aluno pela matricula.    
+        guardarNovoAluno();
+        procurarAlunoPorMatricula();  
+    }
+
+
+    //função que "cadastra" novo aluno no arquivo txt.
+    public static void guardarNovoAluno(){
+        //abre o arquivo para gravar nele
+        StreamWriter sw = new StreamWriter("alunos.txt", true, Encoding.ASCII);
+        //declarando variaveis
+        int matricula=0;
+        string continuar = "s",nome = "";
+        //titulo a parte
+        Console.WriteLine("Cadastro de Alunos.");
+
+        while (continuar.ToLower() == "s")
+        {
+
+            
+            
+            Console.Write("Matrícula: ");
+            matricula =int.Parse(Console.ReadLine());
+
+            Console.Write("Nome: ");
+            nome = Console.ReadLine();
+
+            sw.WriteLine(matricula + ":" + nome);
+
+            Console.Write("Deseja cadastrar outro aluno? (s/n): ");
+            continuar = Console.ReadLine();
+        }
+
+        sw.Close();
+    }
+
+
+
+
+    // Função que lê o arquivo e retorna o nome do aluno com base na matrícula
+    public static string matricula(int matriculaProcurada)
+    {
+        //abrindo arquivo para leitura
+        StreamReader sr = new StreamReader("alunos.txt");
+        //declarando variaveis
+        int matricula = 0;
+        string line = sr.ReadLine(),nome = "";
+
+        while (line != null)
+        {
+            string[] dados = line.Split(':',' ');
+            matricula =int.Parse(dados[0]);
+            nome = dados[1];
+
+            if (matricula == matriculaProcurada)
+            {
+                sr.Close();
+                return nome;
+            }
+
+            line = sr.ReadLine();
+        }
+
+        sr.Close();
+        return ""; 
+    }
+
+
+
+    //função para guardar nova matricula e aluno no alunos.txt
+    public static void procurarAlunoPorMatricula(){
+
+        string continuar = "s";
+          while(continuar.ToLower() == "s")
+        {
+         //pedindo para o usuario digitar a matrícula para procurar o aluno
+        Console.Write("\nDigite uma matrícula para buscar o nome do aluno: ");
+        int matriculaBusca = int.Parse(Console.ReadLine());
+
+        string resultado = matricula(matriculaBusca);
         
-        matrizAleatoria(matriz);
-        imprimirAcoesMatriz(matriz);
-        
-    }   
+        Console.WriteLine("Aluno encontrado: " + resultado + "\n");
 
-    //imprime todas as somas calculadas da matriz
-    public static void imprimirAcoesMatriz(int[,] matriz){
-        //corrigido o Console.WriteLine para não quebrar string no meio
-        Console.WriteLine($"\nSoma da linha 3: {SomaLinha(matriz, 3)}");
-        Console.WriteLine($"Soma da coluna 2: {SomaColuna(matriz, 2)}");
-        Console.WriteLine($"Soma da diagonal principal: {SomaDiagonalPrincipal(matriz)}");
-        Console.WriteLine($"Soma da diagonal secundária: {SomaDiagonalSecundaria(matriz)}");
-        Console.WriteLine($"Soma de todos os elementos: {SomaTodosElementos(matriz)}");
-    }
-
-    //preenche matriz com números aleatórios e imprime
-    public static void matrizAleatoria(int[,] matriz){
-        Random r= new Random();  
-
-        for (int i = 0; i < matriz.GetLength(0); i++) {
-            for (int j = 0; j < matriz.GetLength(1); j++) {
-                matriz[i,j] = r.Next(1,31);  
-            }
+       
+        //qualquer resposta além e s faz o while terminar
+        Console.Write("Deseja procurar outro aluno? (s/n): ");
+        continuar = Console.ReadLine();
         }
-
-        Console.WriteLine("Matriz:");
-        for (int i = 0; i < matriz.GetLength(0); i++) {
-            for (int j = 0; j < matriz.GetLength(1); j++) {
-                Console.Write($"{matriz[i,j],3} ");
-            }
-            Console.WriteLine();
-        }
-    }
-
-    //soma os elementos da linha especificada
-    public static int SomaLinha(int[,] matriz, int linha){
-        int soma = 0;
-        for(int j=0; j < matriz.GetLength(1); j++){
-            soma += matriz[linha,j];
-        }
-        return soma;
-    }
-
-    //soma os elementos da coluna especificada
-    public static int SomaColuna(int[,] matriz, int coluna){
-        int soma = 0;
-        for(int i=0; i < matriz.GetLength(0); i++){
-            soma += matriz[i,coluna];
-        }
-        return soma;
-    }
-
-    //soma os elementos da diagonal principal
-    public static int SomaDiagonalPrincipal(int[,] matriz){
-        int soma = 0;
-        int n = matriz.GetLength(0);
-        for(int i=0; i < n; i++){
-            soma += matriz[i,i];
-        }
-        return soma;
-    }
-
-    //soma os elementos da diagonal secundária
-    public static int SomaDiagonalSecundaria(int[,] matriz){
-        int soma = 0;
-        int n = matriz.GetLength(0);
-        for(int i=0; i < n; i++){
-            soma += matriz[i,n - 1 - i];
-        }
-        return soma;
-    }
-
-    //soma todos os elementos da matriz
-    public static int SomaTodosElementos(int[,] matriz){
-        int soma = 0;
-        for(int i=0; i < matriz.GetLength(0); i++){
-            for(int j=0; j < matriz.GetLength(1); j++){
-                soma += matriz[i,j];
-            }
-        }
-        return soma;
     }
 }
